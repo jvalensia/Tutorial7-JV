@@ -1,0 +1,263 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{titling}
+\pretitle{\begin{center} \includegraphics[width=5in,height=13in]{front.jpg}\LARGE\\}
+\posttitle{\end{center}}
+\usepackage{fontawesome}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{sectsty}
+\sectionfont{\color{olive}}
+\usepackage{verbatim}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Reproducible and Collaborative Practices},
+  pdfauthor={Patricia Menéndez},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Reproducible and Collaborative Practices}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Tutorial 7}
+\author{Patricia Menéndez}
+\date{}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\section*{Tutorial objectives:}
+\begin{tcolorbox}
+ \begin{itemize}
+   \item Practice version control workflow.
+   \item Ammend commits.
+   \item Visit past commits and create branches from those.
+   \item Merging branches and deal with conflicts.
+   \item Practice pull requests.
+   \item Use GitKraken as a tool to visualize trees.
+   \item Use git reset and git revert.
+ \end{itemize}
+\end{tcolorbox}
+
+\clearpage
+
+\hypertarget{forks-pull-request-commits-and-inspecting-differences-between-commits-work-in-pairs}{%
+\section{Forks, pull request, commits and inspecting differences between
+commits (work in
+pairs)}\label{forks-pull-request-commits-and-inspecting-differences-between-commits-work-in-pairs}}
+
+During this exercise make sure that you use your terminal/cli and also
+GitKraken to see the repo tree. Also keep an eye on your GitHub repo.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create a new \emph{public} GitHub repository called
+  \emph{Tutorial7-XX} and replace \emph{XX} with your initials. Include
+  a \emph{README.md} file.
+\item
+  Create a new branch called \emph{newbranchXX} and move the HEAD of
+  your repo to the tip of \emph{newbranchXX}
+\item
+  In your new branch add a new file called \emph{exerciseXX.Rmd} and
+  replace \emph{XX} with your initials.
+\item
+  Stage, commit and push the changes into the remote repo
+\item
+  Create a new folder in \emph{newbranchXX} called \emph{Images} and add
+  \emph{Figure1.png} (you can find the figure in Moodle)
+\item
+  Stage, commit and push the changes into the remote repo.
+\item
+  Using \emph{git log} and \emph{git log --oneline} inspect the commits
+  that you have made.
+\item
+  Exchange the details of your GitHub repo with your partner for the
+  exercise.
+\item
+  Fork your partner's repository.
+\item
+  Clone locally your partner's repository \textbf{with all the
+  branches}. \textbf{Hint:} See lecture slides page 36.
+\item
+  Continue working in your partner's branch and add the following to the
+  \emph{exerciseXX.Rmd} YAML:
+\end{enumerate}
+
+\begin{tcolorbox}
+\begin{verbatim}
+
+title: "Reproducible and Collaborative Practices"
+subtitle: "Tutorial 7"
+author: "Your Name"
+institute: "Department of Econometrics and Business Statistics"
+output: 
+ pdf_document:
+   toc: true
+   toc_depth: 2
+   number_sections: true
+   highlight: tango
+header-includes: 
+  - \usepackage{titling}
+  - \pretitle{\begin{center}
+    \includegraphics[width=5in,height=13in]{figs/front.jpg}
+  - \posttitle{\end{center}}
+  - \usepackage{fontawesome}
+  - \usepackage[most]{tcolorbox}
+  - \usepackage{xcolor}
+  - \usepackage{sectsty}
+  - \sectionfont{\color{olive}}
+  - \usepackage{verbatim}
+  
+\end{verbatim}
+\end{tcolorbox}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{11}
+\item
+  Use \emph{git status} and \emph{git log --oneline} to inspect your
+  repo.
+\item
+  Stage \emph{exerciseXX.Rmd}.
+\item
+  Unstage \emph{exerciseXX.Rmd}.
+\item
+  Stage, commit and push the changes into the remote repo.
+\item
+  Amend this last commit. \textbf{Hint:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    git commit --amend
+  \item
+    after that in your terminal you can use :q to get out of the text
+    editor
+  \item
+    git push --force
+  \item
+    You can also right click on your last commit in the GitKraken tree
+    and select \emph{edit commit message}.
+  \end{itemize}
+\item
+  Add one new section into the \emph{exerciseXX.Rmd}.
+\item
+  Stage, commit and push the changes into the remote repo.
+\item
+  Inspect the differences between your last two commits. \textbf{Hint:}
+  diff oldestcommit\_SHA .. HEAD --color -words
+\item
+  Go back to a previous commit of your choice and create a new branch
+  from there. \textbf{Hint:} git checkout SHA/SHA1.
+\item
+  Checkout into the new branch and add a new section into
+  \emph{exerciseXX.Rmd}. Then merge this new branch into your partner's
+  branch.
+\item
+  Create a pull request to each other and accept the changes that your
+  partner is suggesting for your repo dealing with any possible merging
+  conflicts.
+\item
+  Once you have finished with this pull request merge the branch into
+  master.
+\end{enumerate}
+
+\hypertarget{closer-look-to-commits-revert-to-previous-commits-and-reset-your-repository.}{%
+\section{Closer look to commits, revert to previous commits and reset
+your
+repository.}\label{closer-look-to-commits-revert-to-previous-commits-and-reset-your-repository.}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Use GitKraken and inspect your previous exercise repo.
+\item
+  Inspect the tree and commits.
+\item
+  Create a new section in \emph{exerciseXX.Rmd}.
+\item
+  Stage, commit and push the changes.
+\item
+  Add a new \emph{latex list} inside the last section that you have
+  created. \textbf{Hint:}
+
+  \begin{verbatim} \begin{itemize} \item ... \end{itemize} \end{verbatim}
+\item
+  Stage, commit and push the changes.
+\item
+  Go back and find the SHA number of the second last commit and use
+  \emph{git reset SHA}. Type \emph{git status} and observe what has
+  changed. How many commits do you have now in your repo now?
+\item
+  In the terminal use \emph{git revert} to go back to one of your
+  previous commits.
+\end{enumerate}
+
+\end{document}
